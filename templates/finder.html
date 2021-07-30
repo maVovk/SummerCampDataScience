@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Finder</title>
+</head>
+<body>
+    <h2>Please enter name of the song</h2>
+    <form method="post" action="/">
+        <input type="text" name="song_name" placeholder="Input song name">
+        <input type="submit" value="Submit" name="result">
+    </form>
+    {% if status == True %}
+        <p>Result: {{res}}</p>
+    {% endif%}
+</body>
+</html>
