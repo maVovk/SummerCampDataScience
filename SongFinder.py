@@ -4,6 +4,7 @@ import sqlite3
 
 app = Flask(__name__)
 
+
 def beautify(info):
     if info is None:
         return 'No such song'
