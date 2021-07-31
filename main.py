@@ -5,6 +5,10 @@ import pandas as pd
 import vk
 import time
 
+#              ЭТО ПРИЛОЖЕНИЕ ДЛЯ ВЫВЕДЕНИЯ ИНФОРМАЦИИ О СООБЩЕСТВЕ
+# (ПОКА ГРАФИКИ ВЫВОДЯТСЯ В ОТДЕЛЬНЫХ ОКНАХ БРАУЗЕРА, НО ЕСЛИ БУДЕТ НЕ ЛЕНБ ПОФИКШУ)
+
+
 ACCESS_TOKEN = ''
 session = vk.Session(access_token=ACCESS_TOKEN)
 api = vk.API(session)
@@ -22,18 +26,13 @@ def get_users():
         if group_name.lower() == elem['name'].lower():
             try:
                 users = api.groups.getMembers(group_id=elem['id'], v='5.120')
-                # print(users['count'])
                 ids = []
 
                 for i in range(0, users['count'], 1000):
                     ids += api.groups.getMembers(group_id=elem['id'], offset=i, count=1000, v='5.120')['items']
-                    # print(ids)
-                    # ids += tmp['items']
-                    # print(i, users['count'])
                     print('*', end='')
                     time.sleep(0.5)
 
-                # print(len(ids))
                 break
             except:
                 return 'Получить данные из группы невозможно'
@@ -51,7 +50,6 @@ def get_users():
 
 
 def create_dataframe(ids):
-    # print(len(ids))
     data = []
 
     for i in range(0, len(ids), 1000):
